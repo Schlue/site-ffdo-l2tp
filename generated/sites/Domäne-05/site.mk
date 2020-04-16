@@ -12,7 +12,6 @@ GLUON_FEATURES := \
 	ebtables-limit-arp \
 	mesh-batman-adv-15 \
 	mesh-vpn-tunneldigger \
-	radvd \
 	respondd \
 	status-page \
 	web-advanced \
@@ -42,7 +41,7 @@ GLUON_SITE_PACKAGES := \
 #			opkg compare-versions "$1" '>>' "$2"
 #		to decide if a version is newer or not.
 
-DEFAULT_GLUON_RELEASE := 2.1.0+exp$(shell date '+%Y%m%d')
+DEFAULT_GLUON_RELEASE := 3.0.0+exp$(shell date '+%Y%m%d')
 
 
 ##	GLUON_RELEASE
@@ -61,10 +60,8 @@ GLUON_PRIORITY ?= 0
 # Region code required for some images; supported values: us eu
 GLUON_REGION ?= eu
 
-# Use ibss enabled firmware for ath10k
-GLUON_WLAN_MESH ?= ibss
-
 # Languages to include
 GLUON_LANGS ?= en de
 
-
+# Only build sysupgrade images for deprecated devices.
+GLUON_DEPRECATED ?= upgrade
