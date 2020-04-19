@@ -4,13 +4,11 @@ MAINTAINER Cajus Kamer <Cajus.Kamer@arcor.de>
 ENV GLUON_TAG_DOCKER_ENV v2020.1.x
 ENV GLUON_RELEASE_DOCKER_ENV 3.0.0
 
-#ENV GLUON_TARGETS_DOCKER_ENV    ar71xx-generic ar71xx-mikrotik ar71xx-nand ar71xx-tiny ath79-generic \
-#                                brcm2708-bcm2708 brcm2708-bcm2709 brcm2708-bcm2710 ipq40xx-generic ipq806x-generic \
-#                                lantiq-xrx200 lantiq-xway mpc85xx-generic mpc85xx-p1020 mvebu-cortexa9
-#                                ramips-mt7620 ramips-mt7621 ramips-mt76x8 ramips-rt305x sunxi-cortexa7 x86-64 x86-generic x86-geode 
-ENV GLUON_TARGETS_DOCKER_ENV lantiq-xway
-# ENV DOMAINS_TO_BUILD_DOCKER_ENV Domäne-01 Domäne-02 Domäne-03 Domäne-04 Domäne-05 Domäne-06 Domäne-07 Domäne-08 Domäne-09 Domäne-09 Domäne-10 Domäne-11
-ENV DOMAINS_TO_BUILD_DOCKER_ENV Domäne-04
+ENV GLUON_TARGETS_DOCKER_ENV    ar71xx-generic ar71xx-mikrotik ar71xx-nand ar71xx-tiny ath79-generic \
+                                brcm2708-bcm2708 brcm2708-bcm2709 brcm2708-bcm2710 ipq40xx-generic ipq806x-generic \
+                                lantiq-xrx200 lantiq-xway mpc85xx-generic mpc85xx-p1020 mvebu-cortexa9 \
+                                ramips-mt7620 ramips-mt7621 ramips-mt76x8 ramips-rt305x sunxi-cortexa7 x86-64 x86-generic x86-geode 
+ENV DOMAINS_TO_BUILD_DOCKER_ENV Domäne-01 Domäne-02 Domäne-03 Domäne-04 Domäne-05 Domäne-06 Domäne-07 Domäne-08 Domäne-09 Domäne-09 Domäne-10 Domäne-11
 
 ENV BUILD_GLUON_DIR_DOCKER_ENV /usr/src/build/gluon
 ENV BUILD_SITE_DIR_DOCKER_ENV /usr/src/build/site
@@ -46,7 +44,7 @@ RUN adduser --system --home /usr/src/build build
 USER build
 WORKDIR /usr/src/build
 COPY generated/sites /usr/src/sites
-#RUN git config --global user.email "technik@freifunk-dortmund.de"
-#RUN git config --global user.name "FFDO Gluon Build Container"
+RUN git config --global user.email "technik@freifunk-dortmund.de"
+RUN git config --global user.name "FFDO Gluon Build Container"
 
 CMD ["/bin/bash", "/usr/src/build_all_lede.sh", "-B", "--force-retries", "3"]
